@@ -7,6 +7,9 @@ use frontend\models\Estados;
 use frontend\models\Escuelas;
 use frontend\models\Categoria;
 use yii\helpers\ArrayHelper;
+use kartik\touchspin\TouchSpin;
+use kartik\date\DatePicker;
+
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Articulo */
 /* @var $form yii\widgets\ActiveForm */
@@ -22,13 +25,34 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'descripcion')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'puntaje_articulo')->textInput(['maxlength' => true]) ?>
+    <?php
+            echo '<label class="control-label">Puntaje</label>';
+            echo TouchSpin::widget([
+            'name' =>  'puntaje_articulo',
+            'model' => $model,
+            'attribute' => 'puntaje_articulo',
+            'options' => ['placeholder' => 'Puntaje...', 'min' => 0,'max' => 100]
+    ]); ?>
+
 
     <?= $form->field($model, 'ciudad')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'fehca_revision')->textInput() ?>
 
-    <?= $form->field($model, 'fecha_publicacion')->textInput() ?>
+    <?php
+          echo '<label class="control-label">Fecha de Publicación</label>';
+          echo DatePicker::widget([
+          'name' => 'fecha_publicacion',
+          'model' => $model,
+          'attribute' => 'fecha_publicacion',
+          'type' => DatePicker::TYPE_COMPONENT_APPEND,
+          'value' => '',
+          'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-m-dd'
+          ]
+        ]);
+?>
 
 
     <?php
