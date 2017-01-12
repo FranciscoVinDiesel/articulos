@@ -28,7 +28,7 @@ AppAsset::register($this);
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' => 'Inicio',
+                'brandLabel' => 'INICIO',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -50,11 +50,19 @@ AppAsset::register($this);
 
                     ['label' => 'Gii', 'url' => ['/gii']],
 
-                    //['label' => 'BACKEND', 'url' => '../../backend/web','visible' => Yii::$app->user->identity->isAdmin || Yii::$app->user->can('admin'),],
                 ];
                 $menuItems  = [
                     ['label' => 'BACKEND', 'url' => '/../yii2_base-master/backend/web/index.php'],
                 ];
+
+                $menuItems[] = [
+                    'label' => 'MODULOS',
+                    //'visible' => Yii::$app->user->identity->isAdmin || Yii::$app->user->can('marc'),
+                    'items' => [
+                        ['label' => 'Articulos', 'url' => ['/articulo'],],
+                    ],
+                ];
+
          $menuItems[] = '<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">PERFIL <b class="caret"></b></a>'
                                .'<ul id="w4" class="dropdown-menu">'
                                 .'<li><a href="'.Yii::$app->homeUrl.'user/settings/account" tabindex="-1">Mi cuenta</a></li>'

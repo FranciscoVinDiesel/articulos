@@ -39,8 +39,8 @@ CrudAsset::register($this);
             'responsive' => true,
             'panel' => [
                 'type' => 'primary',
-                'heading' => '<i class="glyphicon glyphicon-list"></i> Articulos listing',
-                'before'=>'<em>* Resize table columns just like a spreadsheet by dragging the column edges.</em>',
+                'heading' => '<i class="glyphicon glyphicon-list"></i> Listado de artículos',
+                'before'=>'<em>* Articulos científicos.</em>',
 
             ]
         ])?>
