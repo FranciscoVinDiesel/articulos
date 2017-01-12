@@ -71,10 +71,10 @@ class Articulo extends \yii\db\ActiveRecord
             'fecha_registro' => 'Fecha Registro',
             'fehca_revision' => 'Fehca Revision',
             'fecha_publicacion' => 'Fecha Publicacion',
-            'id_escuela' => 'Id Escuela',
-            'id_estados' => 'Id Estados',
-            'id_categoria' => 'Id Categoria',
-            'id_autores' => 'Id Autores',
+            'id_escuela' => 'Escuela',
+            'id_estados' => 'Estados',
+            'id_categoria' => 'Categoria',
+            'id_autores' => 'Autores',
         ];
     }
 
