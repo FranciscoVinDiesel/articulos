@@ -18,8 +18,8 @@ class ArticuloSearch extends Articulo
     public function rules()
     {
         return [
-            [['id_articulo', 'id_escuela', 'id_estados', 'id_categoria', 'id_autores'], 'integer'],
-            [['nombre_articulo', 'Url', 'descripcion', 'ciudad', 'fecha_registro', 'fehca_revision', 'fecha_publicacion'], 'safe'],
+            [['id_articulo', 'id_escuela', 'id_estados', 'id_categoria'], 'integer'],
+            [['nombre_articulo', 'Url', 'descripcion', 'ciudad', 'fecha_creacion', 'fehca_revision', 'fecha_publicacion'], 'safe'],
             [['puntaje_articulo'], 'number'],
         ];
     }
@@ -59,13 +59,12 @@ class ArticuloSearch extends Articulo
         $query->andFilterWhere([
             'id_articulo' => $this->id_articulo,
             'puntaje_articulo' => $this->puntaje_articulo,
-            'fecha_registro' => $this->fecha_registro,
+            'fecha_creacion' => $this->fecha_creacion,
             'fehca_revision' => $this->fehca_revision,
             'fecha_publicacion' => $this->fecha_publicacion,
             'id_escuela' => $this->id_escuela,
             'id_estados' => $this->id_estados,
             'id_categoria' => $this->id_categoria,
-            'id_autores' => $this->id_autores,
         ]);
 
         $query->andFilterWhere(['like', 'nombre_articulo', $this->nombre_articulo])

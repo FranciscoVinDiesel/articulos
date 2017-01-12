@@ -16,7 +16,6 @@ use Yii;
  * @property integer $id_escuela
  *
  * @property ArticuloAutores[] $articuloAutores
- * @property Articulo[] $idArticulos
  * @property Escuelas $idEscuela
  */
 class Docentes extends \yii\db\ActiveRecord
@@ -64,15 +63,7 @@ class Docentes extends \yii\db\ActiveRecord
      */
     public function getArticuloAutores()
     {
-        return $this->hasMany(ArticuloAutores::className(), ['id_autores' => 'id_docente', 'id_escuela' => 'id_escuela']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdArticulos()
-    {
-        return $this->hasMany(Articulo::className(), ['id_articulo' => 'id_articulo', 'id_escuela' => 'id_escuela'])->viaTable('articulo_autores', ['id_autores' => 'id_docente', 'id_escuela' => 'id_escuela']);
+        return $this->hasMany(ArticuloAutores::className(), ['id_autores' => 'id_docente']);
     }
 
     /**

@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use frontend\models\Estados;
 use frontend\models\Escuelas;
+use frontend\models\Docentes;
 use frontend\models\Categoria;
 use yii\helpers\ArrayHelper;
 use kartik\touchspin\TouchSpin;
@@ -26,6 +27,16 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'descripcion')->textarea(['rows' => 6]) ?>
 
     <?php
+        echo $form->field($model, 'idAutores')->widget(Select2::classname(), [
+        'data'  =>  ArrayHelper::map(Docentes::find()->all(), 'id_docente', 'nombre_docente'),
+        'options' => ['placeholder' => 'Select a state ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+        ]);
+     ?>
+
+    <?php
             echo '<label class="control-label">Puntaje</label>';
             echo TouchSpin::widget([
             'name' =>  'puntaje_articulo',
@@ -38,6 +49,21 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'ciudad')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'fehca_revision')->textInput() ?>
+    <?php
+          echo '<label class="control-label">Fecha de Revisión</label>';
+          echo DatePicker::widget([
+          'name' => 'fehca_revision',
+          'model' => $model,
+          'attribute' => 'fecha_publicacion',
+          'type' => DatePicker::TYPE_COMPONENT_APPEND,
+          'value' => '',
+          'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-m-dd'
+          ]
+        ]);
+?>
+
 
     <?php
           echo '<label class="control-label">Fecha de Publicación</label>';
@@ -88,14 +114,14 @@ use kartik\date\DatePicker;
  ?>
 
 
-    <?= $form->field($model, 'id_autores')->textInput() ?>
 
 
-	<?php if (!Yii::$app->request->isAjax){ ?>
-	  	<div class="form-group">
-	        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-	    </div>
-	<?php } ?>
+
+  <?php if (!Yii::$app->request->isAjax){ ?>
+      <div class="form-group">
+          <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+      </div>
+  <?php } ?>
 
     <?php ActiveForm::end(); ?>
 

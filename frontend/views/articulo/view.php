@@ -12,8 +12,8 @@ use yii\widgets\DetailView;
         'attributes' => [
             'id_articulo',
             'nombre_articulo',
-            'Url:ntext',
-            'descripcion:ntext',
+            'Url:url',
+            'descripcion',
             'puntaje_articulo',
             'ciudad',
             'fecha_creacion',
@@ -22,7 +22,6 @@ use yii\widgets\DetailView;
             'id_escuela',
             'id_estados',
             'id_categoria',
-            'id_autores',
         ],
     ]) ?>
 

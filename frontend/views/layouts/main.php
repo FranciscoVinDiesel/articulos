@@ -8,6 +8,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+ use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -27,7 +28,7 @@ AppAsset::register($this);
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' => 'App',
+                'brandLabel' => 'Inicio',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -35,7 +36,7 @@ AppAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => 'Inicio', 'url' => ['/site/index']],
-                    //['label' => 'About', 'url' => ['/site/about']],
+
                     //['label' => 'Contact', 'url' => ['/site/contact']],
             ];
             if (Yii::$app->user->isGuest) {
@@ -43,14 +44,18 @@ AppAsset::register($this);
                 $menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];
 
             } else {
-                $menuItems = [
-                    ['label' => 'Inicio', 'url' => ['/site/index']],
+                $menuItems  = [
+
                     ['label' => 'Artículos', 'url' => ['/articulo']],
+
                     ['label' => 'Gii', 'url' => ['/gii']],
 
                     //['label' => 'BACKEND', 'url' => '../../backend/web','visible' => Yii::$app->user->identity->isAdmin || Yii::$app->user->can('admin'),],
                 ];
-         $menuItems[] = '<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Perfil <b class="caret"></b></a>'
+                $menuItems  = [
+                    ['label' => 'BACKEND', 'url' => '/../yii2_base-master/backend/web/index.php'],
+                ];
+         $menuItems[] = '<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">PERFIL <b class="caret"></b></a>'
                                .'<ul id="w4" class="dropdown-menu">'
                                 .'<li><a href="'.Yii::$app->homeUrl.'user/settings/account" tabindex="-1">Mi cuenta</a></li>'
                         .'<li>'
