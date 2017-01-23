@@ -8,19 +8,25 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'name' => 'Examen Final',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-frontend',
+'csrfParam' => '_csrf-frontend',
+
+      'parsers' => [
+          'application/json' => 'yii\web\JsonParser',
+      ]
+
+
+
         ],
-        /*'user' => [
+        'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
-        ],*/
+        ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
@@ -38,21 +44,20 @@ return [
             'errorAction' => 'site/error',
         ],
 
-        'urlManager' => [
-            'enablePrettyUrl' => false,
-            'showScriptName' => false,
-            'rules' => [
-                '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-            ],
+      'urlManager' => [
+          'enablePrettyUrl' => true,
+          //'enableStrictParsing' => true,
+          //'showScriptName' => false,
+          'rules' => [
+              ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+          ],
+      ],
 
-        ],
+   ],
 
 
-    ],
-    'modules' => [
-         'rbac' => 'dektrium\rbac\RbacWebModule',
-    ],
+
+
+
     'params' => $params,
 ];

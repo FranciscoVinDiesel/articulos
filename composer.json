@@ -24,7 +24,10 @@
         "bedezign/yii2-audit": "^1.0",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-widget-touchspin": "*",
-        "kartik-v/yii2-widget-datepicker": "@dev"
+        "kartik-v/yii2-widget-datepicker": "@dev",
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "kartik-v/bootstrap-fileinput": "dev-master",
+        "kartik-v/yii2-widgets": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

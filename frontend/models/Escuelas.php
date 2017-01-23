@@ -39,7 +39,7 @@ class Escuelas extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_escuela' => 'Id Escuela',
+            'id_escuela' => 'Escuela',
             'nombre_escuela' => 'Nombre Escuela',
         ];
     }

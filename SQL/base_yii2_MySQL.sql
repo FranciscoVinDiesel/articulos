@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `base_yii2`
 --
-CREATE DATABASE IF NOT EXISTS `base_yii2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `base_yii2`;
 
 -- --------------------------------------------------------
 

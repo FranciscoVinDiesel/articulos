@@ -1,16 +1,14 @@
 <?php
 /* @var $this \yii\web\View */
 /* @var $content string */
-
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
+use frontend\assets\DashgumAsset;
 use common\widgets\Alert;
  use yii\helpers\Url;
-
-AppAsset::register($this);
+DashgumAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -25,83 +23,81 @@ AppAsset::register($this);
     <body>
         <?php $this->beginBody() ?>
 
-        <div class="wrap">
-            <?php
-            NavBar::begin([
-                'brandLabel' => 'INICIO',
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
-                ],
-            ]);
-            $menuItems = [
-                ['label' => 'Inicio', 'url' => ['/site/index']],
+          <section id="container-fluid" >
+              <!-- **********************************************************************************************************************************************************
+              TOP BAR CONTENT & NOTIFICATIONS
+              *********************************************************************************************************************************************************** -->
+              <!--header start-->
+              <header class="header black-bg">
+                      <div class="sidebar-toggle-box">
+                          <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+                      </div>
+                      <div class="bar ">
+          <!--logo start-->
+                  <?php  echo Html::a('<b>PUCESE</b>',Url::to('/yii2_base-master/frontend/web/index.php', false), ['class'=> 'logo']); ?>
+                  <!--logo end-->
+                    <div class="top-menu">
+                      <ul class="nav pull-right top-menu">
+                            <li><a class="logout" href="login.html">Logout</a></li>
+                      </ul>
+                    </div>
+                </header>
+              <!--header end-->
 
-                    //['label' => 'Contact', 'url' => ['/site/contact']],
-            ];
-            if (Yii::$app->user->isGuest) {
-                //$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];
+          <aside>
+              <div id="sidebar"  class="nav-collapse ">
+                  <!-- sidebar menu start-->
+                  <ul class="sidebar-menu" id="nav-accordion">
 
-            } else {
-                $menuItems  = [
+                      <li class="mt">
+                          <a class="active" href="/yii2_base-master/frontend/web/index.php">
+                              <i class="fa fa-user"></i>
+                              <span>Inicio</span>
+                          </a>
+                      </li>
 
-                    ['label' => 'Artículos', 'url' => ['/articulo']],
+                      <li class="sub-menu">
+                          <a href="javascript:;" >
+                              <i class="fa fa-desktop"></i>
+                              <span>Articulos</span>
+                          </a>
+                          <ul class="sub">
+                              <li><a  href="/yii2_base-master/frontend/web/articulo">Crear</a></li>
+                          </ul>
+                      </li>
 
-                    ['label' => 'Gii', 'url' => ['/gii']],
 
-                ];
-                $menuItems  = [
-                    ['label' => 'BACKEND', 'url' => '/../yii2_base-master/backend/web/index.php'],
-                ];
+                  </ul>
+                  <!-- sidebar menu end-->
+              </div>
+          </aside>
+          <!--sidebar end-->
 
-                $menuItems[] = [
-                    'label' => 'MODULOS',
-                    //'visible' => Yii::$app->user->identity->isAdmin || Yii::$app->user->can('marc'),
-                    'items' => [
-                        ['label' => 'Articulos', 'url' => ['/articulo'],],
-                    ],
-                ];
 
-         $menuItems[] = '<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">PERFIL <b class="caret"></b></a>'
-                               .'<ul id="w4" class="dropdown-menu">'
-                                .'<li><a href="'.Yii::$app->homeUrl.'user/settings/account" tabindex="-1">Mi cuenta</a></li>'
-                        .'<li>'
-                        . Html::beginForm(['/site/logout'], 'post')
-                        . Html::submitButton(
-                                'Salir (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link']
-                        )
-                        . Html::endForm()
-                        . '</li>'
-                        . '</ul>';
-            }
-            echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => $menuItems,
-            ]);
-            NavBar::end();
-            ?>
+          <section id="main-content">
+              <section class="wrapper">
 
-            <div class="container">
-<?=
-Breadcrumbs::widget([
-    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-])
-?>
-                <?= Alert::widget() ?>
-                <?= $content ?>
+                <div class="container-fluid">
+                    <?=
+                    Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ])
+                    ?>
+                    <?= Alert::widget() ?>
+                    <?= $content ?>
+                </div>
             </div>
-        </div>
+              </section>
+          </section>
 
-        <footer class="footer">
-            <div class="container">
-                <p class="pull-left">&copy; PUCESE <?= date('Y') ?></p>
 
-                <!--p class="pull-right">< ?= Yii::powered() ?></p-->
-            </div>
-        </footer>
+      </section>
+
+
+
 
         <?php $this->endBody() ?>
+
     </body>
 </html>
 <?php $this->endPage() ?>

@@ -18,8 +18,8 @@ class ArticuloSearch extends Articulo
     public function rules()
     {
         return [
-            [['id_articulo', 'id_escuela', 'id_estados', 'id_categoria'], 'integer'],
-            [['nombre_articulo', 'Url', 'descripcion', 'ciudad', 'fecha_creacion', 'fehca_revision', 'fecha_publicacion'], 'safe'],
+            [['id_articulo', 'id_escuela', 'id_estados'], 'integer'],
+            [['nombre_articulo', 'Url', 'descripcion', 'ciudad', 'fecha_creacion', 'fehca_revision', 'fecha_publicacion', 'archivo'], 'safe'],
             [['puntaje_articulo'], 'number'],
         ];
     }
@@ -44,6 +44,8 @@ class ArticuloSearch extends Articulo
     {
         $query = Articulo::find();
 
+        // add conditions that should always apply here
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -56,6 +58,7 @@ class ArticuloSearch extends Articulo
             return $dataProvider;
         }
 
+        // grid filtering conditions
         $query->andFilterWhere([
             'id_articulo' => $this->id_articulo,
             'puntaje_articulo' => $this->puntaje_articulo,
@@ -64,13 +67,13 @@ class ArticuloSearch extends Articulo
             'fecha_publicacion' => $this->fecha_publicacion,
             'id_escuela' => $this->id_escuela,
             'id_estados' => $this->id_estados,
-            'id_categoria' => $this->id_categoria,
         ]);
 
         $query->andFilterWhere(['like', 'nombre_articulo', $this->nombre_articulo])
             ->andFilterWhere(['like', 'Url', $this->Url])
             ->andFilterWhere(['like', 'descripcion', $this->descripcion])
-            ->andFilterWhere(['like', 'ciudad', $this->ciudad]);
+            ->andFilterWhere(['like', 'ciudad', $this->ciudad])
+            ->andFilterWhere(['like', 'archivo', $this->archivo]);
 
         return $dataProvider;
     }

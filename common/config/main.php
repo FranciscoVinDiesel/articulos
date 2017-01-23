@@ -1,43 +1,22 @@
 <?php
-
 return [
-    
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'timeZone' => 'Asia/Shanghai', //time zone affect the formatter datetime format
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'errorHandler' => [
-            // web error handler
-            'class' => '\bedezign\yii2\audit\components\web\ErrorHandler',
-            // console error handler
-            //'class' => '\bedezign\yii2\audit\components\console\ErrorHandler',
+        'view' => [
+             'theme' => [
+                 'pathMap' => [
+                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                 ],
+             ],
         ],
+
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
+
     ],
-    'modules' => [
-        'user' => [
-            'class' => 'dektrium\user\Module',
-            'enableUnconfirmedLogin' => true,
-            'confirmWithin' => 21600,
-            'cost' => 12,
-            'enableRegistration' => false,
-            'admins' => ['superadmin'],
-        ],
-        'audit' => [
-            'class' => 'bedezign\yii2\audit\Audit',
-            'accessRoles' => ['superadmin'],
-            'accessUsers' => [1, 2],
-            ],
-        //'rbac' => 'dektrium\rbac\RbacWebModule',
-        'gridview' => [
-            'class' => '\kartik\grid\Module'
-        ],
-        [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'basePath' => '@kvgrid/messages',
-            'forceTranslation' => true
-        ]
-    ],
-    'timeZone' => 'America/Guayaquil',
-    'language' => 'es',
 ];

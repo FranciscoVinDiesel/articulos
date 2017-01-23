@@ -18,16 +18,17 @@ use Yii;
  * @property string $fecha_publicacion
  * @property integer $id_escuela
  * @property integer $id_estados
- * @property integer $id_categoria
+ * @property string $archivo
  *
  * @property Escuelas $idEscuela
  * @property Estados $idEstados
  * @property ArticuloAutores[] $articuloAutores
  * @property ArticuloCategoria[] $articuloCategorias
+ * @property ArticuloRevista[] $articuloRevistas
  */
 class Articulo extends \yii\db\ActiveRecord
 {
-    public $idAutores;
+    public $file;
     /**
      * @inheritdoc
      */
@@ -42,12 +43,14 @@ class Articulo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Url', 'descripcion', 'archivo'], 'string'],
             [['puntaje_articulo'], 'number'],
             [['fecha_creacion', 'fehca_revision', 'fecha_publicacion'], 'safe'],
-            [['id_escuela', 'id_estados', 'id_categoria'], 'required'],
-            [['id_escuela', 'id_estados', 'id_categoria'], 'integer'],
-            [['nombre_articulo', 'descripcion', 'ciudad'], 'string', 'max' => 15],
-            [['Url'], 'string', 'max' => 40],
+            [['id_escuela', 'id_estados', 'archivo'], 'required'],
+            [['id_escuela', 'id_estados'], 'integer'],
+            [['file'], 'file'],
+            [['nombre_articulo'], 'string', 'max' => 200],
+            [['ciudad'], 'string', 'max' => 80],
             [['id_escuela'], 'exist', 'skipOnError' => true, 'targetClass' => Escuelas::className(), 'targetAttribute' => ['id_escuela' => 'id_escuela']],
             [['id_estados'], 'exist', 'skipOnError' => true, 'targetClass' => Estados::className(), 'targetAttribute' => ['id_estados' => 'id_estados']],
         ];
@@ -70,8 +73,7 @@ class Articulo extends \yii\db\ActiveRecord
             'fecha_publicacion' => 'Fecha Publicacion',
             'id_escuela' => 'Id Escuela',
             'id_estados' => 'Id Estados',
-            'id_categoria' => 'Id Categoria',
-            'idAutores' => 'Autores',
+            'archivo' => 'Archivo',
         ];
     }
 
@@ -105,5 +107,13 @@ class Articulo extends \yii\db\ActiveRecord
     public function getArticuloCategorias()
     {
         return $this->hasMany(ArticuloCategoria::className(), ['id_articulo' => 'id_articulo']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticuloRevistas()
+    {
+        return $this->hasMany(ArticuloRevista::className(), ['id_articulo' => 'id_articulo']);
     }
 }
