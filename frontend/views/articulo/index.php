@@ -18,13 +18,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="articulo-index">
   <div id="ajaxCrudDatatable">
 
-    <div class="row">
-      <div class="col-md-2">
+    <div class="row" >
+      <div class="col-md-1">
 
-      <?php   echo Html::a('Crear Articulos', 'create',['class'=>'btn btn-primary btn-md']) ;  ?>
+      <?php   echo Html::a('Crear Articulos', '/yii2_base-master/frontend/web/articulo/create',['class'=>'btn btn-primary btn-md']) ;  ?>
 
       </div>
-      <div class="col-md-10">
+      <div class="col-md-11">
 
         <?php
               Modal::begin([
@@ -46,9 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php  Modal::end();      ?>
 
       </div>
-    </div>
+    </div><br/>
 
-<br>
+
+
           <?php
 
           echo GridView::widget([
@@ -72,8 +73,8 @@ $this->params['breadcrumbs'][] = $this->title;
               'responsive' => true,
               'panel' => [
                   'type' => 'primary',
-                  'heading' => '<i class="glyphicon glyphicon-list"></i> Listado de consumos',
-                  'before'=>'<em>* Listado de consumos.</em>',
+                  'heading' => '<i class="glyphicon glyphicon-list"></i> Listado de artículos',
+                  'before'=>'<em>*  Listado de artículos.</em>',
 
               ],
               'showPageSummary' => true
