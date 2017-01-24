@@ -1,7 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
+use yii\widgets\Breadcrumbs;
+use johnitvn\ajaxcrud\BulkButtonWidget;
+use yii\bootstrap\Modal;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\ArticuloSearch */
@@ -11,33 +16,87 @@ $this->title = 'Articulos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articulo-index">
+  <div id="ajaxCrudDatatable">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="row">
+      <div class="col-md-2">
 
-    <p>
-        <?= Html::a('Create Articulo', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+      <?php   echo Html::a('Crear Articulos', 'create',['class'=>'btn btn-primary btn-md']) ;  ?>
 
-            'id_articulo',
-            'nombre_articulo',
-            'Url:ntext',
-            'descripcion:ntext',
-            'puntaje_articulo',
-            // 'ciudad',
-            // 'fecha_creacion',
-            // 'fehca_revision',
-            // 'fecha_publicacion',
-            // 'id_escuela',
-            // 'id_estados',
-            // 'archivo:ntext',
+      </div>
+      <div class="col-md-10">
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+        <?php
+              Modal::begin([
+                  'header' => '<p>Hello world</p>',
+                  'headerOptions' => ['class' => 'bg-primary'],
+                  'size' => 'modal-lg',
+                  //'options' => [ 'class' => 'primary' ],
+                  'toggleButton' => ['label' => 'Reporte de calificaciones', 'class' => 'btn btn-primary'],
+              ]);
+         ?>
+
+        <table class="table-hover">
+          <tr class="info">
+            <td>Hola Como Estas</td>
+          </tr>
+        </table>
+
+
+        <?php  Modal::end();      ?>
+
+      </div>
+    </div>
+
+<br>
+          <?php
+
+          echo GridView::widget([
+              'id'=>'crud-datatable',
+              'dataProvider' =>   $dataProvider,
+              'filterModel' => $searchModel,
+              'pjax'=>true,
+              'columns' => require(__DIR__.'/_columns.php'),
+              'toolbar'=> [
+                  ['content'=>
+                      Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
+                      ['role'=>'modal-remote','title'=> 'Crear nuevos artículos','class'=>'btn btn-success']).
+                      Html::a('<i class="glyphicon glyphicon-repeat"></i>', [''],
+                      ['data-pjax'=>1, 'class'=>'btn btn-warning', 'title'=>'Refrescar']).
+                      '{toggleData}'.
+                      '{export}'
+                  ],
+              ],
+              'striped' => true,
+              'condensed' => true,
+              'responsive' => true,
+              'panel' => [
+                  'type' => 'primary',
+                  'heading' => '<i class="glyphicon glyphicon-list"></i> Listado de consumos',
+                  'before'=>'<em>* Listado de consumos.</em>',
+
+              ],
+              'showPageSummary' => true
+          ]);
+
+            ?>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<?php Modal::begin([
+    "id"=>"ajaxCrudModal",
+    "footer"=>"",// always need it for jquery plugin
+])?>
+<?php Modal::end(); ?>

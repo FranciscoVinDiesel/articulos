@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Url;
-
+use kartik\grid\GridView;
 return [
     //[
     //    'class' => 'kartik\grid\CheckboxColumn',
@@ -17,6 +17,10 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'nombre_articulo',
+        'pageSummaryOptions' =>
+        [
+         'append' => 'Total'
+        ]
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
@@ -29,6 +33,8 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'puntaje_articulo',
+        'pageSummary' => true,
+        'pageSummaryFunc' => GridView::F_SUM,
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
@@ -42,10 +48,10 @@ return [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'fehca_revision',
     // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'fecha_publicacion',
-    // ],
+       [
+         'class'=>'\kartik\grid\DataColumn',
+         'attribute'=>'fecha_publicacion',
+       ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'id_escuela',

@@ -7,7 +7,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\DashgumAsset;
 use common\widgets\Alert;
- use yii\helpers\Url;
+use yii\helpers\Url;
 DashgumAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -28,7 +28,7 @@ DashgumAsset::register($this);
               TOP BAR CONTENT & NOTIFICATIONS
               *********************************************************************************************************************************************************** -->
               <!--header start-->
-              <header class="header black-bg">
+              <header class="header bg-primary">
                       <div class="sidebar-toggle-box">
                           <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
                       </div>

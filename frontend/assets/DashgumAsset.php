@@ -15,7 +15,7 @@ class DashgumAsset extends AssetBundle
       'css/site.css',
       'dashgum/css/style.css',
       'dashgum/css/style-responsive.css',
-      //'dashgum/css/bootstrap.css',
+      'dashgum/css/bootstrap.css',
       'dashgum/font-awesome/css/font-awesome.css',
       'dashgum/css/zabuto_calendar.css',
       'dashgum/js/gritter/css/jquery.gritter.css',
@@ -23,19 +23,13 @@ class DashgumAsset extends AssetBundle
     ];
     public $js = [
 
-      'menu/menu.js',
-      'dashgum/js/chart-master/Chart.js',
-      'dashgum/js/bootstrap.min.js',
+
       'dashgum/js/jquery.dcjqaccordion.2.7.js',
       'dashgum/js/jquery.dcjqaccordion.2.7.js',
       'dashgum/js/jquery.scrollTo.min.js',
       'dashgum/js/jquery.nicescroll.js',
-      'dashgum/js/jquery.sparkline.js',
       'dashgum/js/common-scripts.js',
-      'dashgum/js/gritter/js/jquery.gritter.js',
-      'dashgum/js/gritter-conf.js',
-      'dashgum/js/sparkline-chart.js',
-      'dashgum/js/zabuto_calendar.js',
+
 
 
     ];

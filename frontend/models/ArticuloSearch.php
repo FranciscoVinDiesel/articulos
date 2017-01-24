@@ -48,6 +48,10 @@ class ArticuloSearch extends Articulo
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+                'pagination' => [
+                'pageSize' => 10,
+          ],
+
         ]);
 
         $this->load($params);
@@ -59,12 +63,15 @@ class ArticuloSearch extends Articulo
         }
 
         // grid filtering conditions
+
+
+
         $query->andFilterWhere([
             'id_articulo' => $this->id_articulo,
             'puntaje_articulo' => $this->puntaje_articulo,
             'fecha_creacion' => $this->fecha_creacion,
             'fehca_revision' => $this->fehca_revision,
-            'fecha_publicacion' => $this->fecha_publicacion,
+            //'fecha_publicacion' => $this->fecha_publicacion,
             'id_escuela' => $this->id_escuela,
             'id_estados' => $this->id_estados,
         ]);
@@ -73,6 +80,7 @@ class ArticuloSearch extends Articulo
             ->andFilterWhere(['like', 'Url', $this->Url])
             ->andFilterWhere(['like', 'descripcion', $this->descripcion])
             ->andFilterWhere(['like', 'ciudad', $this->ciudad])
+            ->andFilterWhere(['like', 'fecha_publicacion', date('Y')])
             ->andFilterWhere(['like', 'archivo', $this->archivo]);
 
         return $dataProvider;
