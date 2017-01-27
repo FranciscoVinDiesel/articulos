@@ -23,7 +23,6 @@ class LoginAsset extends AssetBundle
     ];
     public $js = [
 
-
       'dashgum/js/jquery.dcjqaccordion.2.7.js',
       'dashgum/js/jquery.dcjqaccordion.2.7.js',
       'dashgum/js/jquery.scrollTo.min.js',

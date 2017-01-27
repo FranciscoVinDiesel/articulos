@@ -44,6 +44,8 @@ class EscuelasController extends Controller
         ]);
     }
 
+
+
     /**
      * Displays a single Escuelas model.
      * @param integer $id

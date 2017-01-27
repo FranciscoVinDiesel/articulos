@@ -26,6 +26,8 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'Url',
     ],
+
+
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'descripcion',
@@ -52,10 +54,6 @@ return [
          'class'=>'\kartik\grid\DataColumn',
          'attribute'=>'fecha_publicacion',
        ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'id_escuela',
-    // ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'id_estados',

@@ -13,13 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php $form = ActiveForm::begin(['id' => 'login-form', 'options'=>['class' => 'form-login']]); ?>
 
                 <!--h2 class="form-login-heading">sign in now</h2-->
-                <?=   Html::tag('h2', 'Iniciar Sesion', ['class'=>'form-login-heading']);  ?>
+                <?=   Html::tag('h2', 'Iniciar Sesión', ['class'=>'form-login-heading']);  ?>
 
                 <div class="login-wrap">
 
-                    <?= $form->field($model, 'username')->label('Nombre de Usuario')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'username')->label('Nombre de Usuario')->textInput(['autofocus' => true, 'placeholder'=>'Nombre de Usuario']) ?>
 
-                    <?= $form->field($model, 'password')->label('Contraseña')->passwordInput() ?>
+                    <?= $form->field($model, 'password')->label('Contraseña')->passwordInput(['placeholder'=>'Ingrese la contraseña']) ?>
 
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
@@ -27,7 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
                     </div>
                     <div class="form-group">
-                        <?= Html::submitButton('Login', ['class' => 'btn btn-theme btn-block', 'name' => 'login-button']) ?>
+                      <?php
+                      echo Html::tag('button', '<i class="fa fa-user"></i> Login', ['name'=>'btnSubmit','type'=>'submit', 'class' => 'btn btn-theme btn-block'] );
+                       ?>
+                       <br/>
+                      <?= Html::a('Inicio', ['index'], ['class'=>'btn btn-theme btn-warning']) ?>
+                        <!--?= Html::submitButton('Login', ['class' => 'btn btn-theme btn-block', 'name' => 'login-button']) ?-->
                     </div>
                 </div>
 

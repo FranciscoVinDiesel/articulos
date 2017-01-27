@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\Articulo;
+use frontend\models\Escuelas;
 use frontend\models\ArticuloSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -37,11 +38,39 @@ class ArticuloController extends Controller
     {
         $searchModel = new ArticuloSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = new Articulo();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
+    }
+    /**
+     * Lists all Articulo models.
+     * @return mixed
+     */
+    public function actionAnio($anio)
+    {
+
+     $escuelas = Escuelas::find()->all();
+
+     foreach ($escuelas as $key => $escuelas) {
+         echo '<tr>';
+         $totalEscuela =  Articulo::find()->where([ 'id_escuela' => $escuelas->id_escuela])
+                                          ->AndFilterWhere(['like','fecha_publicacion', $anio])
+                                          ->sum('puntaje_articulo');
+         $cantidadArticulo =  Articulo::find()->where(['id_escuela' => $escuelas->id_escuela])
+                                              ->AndFilterWhere(['like','fecha_publicacion' , $anio])
+                                              ->count('*');
+         echo '<td>'.$escuelas->nombre_escuela.'</td>';
+         echo '<td>'.$totalEscuela.'</td>';
+         echo '<td>'.$cantidadArticulo.'</td>';
+         echo '</tr>';
+
+     }
+
+
     }
 
     /**
@@ -73,12 +102,18 @@ class ArticuloController extends Controller
             /*Consigue la direccion del archivo*/
             $nombre_articulo = $model->nombre_articulo;
             $model->file = UploadedFile::getInstance($model, 'file');
-            $model->file->saveAs('upload/'.$nombre_articulo);
+            
+            if(is_null($model->file)){
+              return $this->redirect(['view', 'id' => $model->id_articulo]);
 
-            $model->archivo = 'upload/'.$nombre_articulo;
-            $model->save();
+            }else{
+              $model->file->saveAs('upload/'.$nombre_articulo);
 
-            return $this->redirect(['view', 'id' => $model->id_articulo]);
+              $model->archivo = 'upload/'.$nombre_articulo;
+              $model->save();
+            }
+
+
         } else {
             return $this->render('create', [
                 'model' => $model,

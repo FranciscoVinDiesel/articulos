@@ -62,7 +62,7 @@ DashgumAsset::register($this);
                               <span>Articulos</span>
                           </a>
                           <ul class="sub">
-                              <li><a  href="/yii2_base-master/frontend/web/articulo">Crear</a></li>
+                              <li><a  href="/yii2_base-master/frontend/web?r=articulo">Crear</a></li>
                           </ul>
                       </li>
 

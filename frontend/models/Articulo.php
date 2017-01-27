@@ -29,6 +29,7 @@ use Yii;
 class Articulo extends \yii\db\ActiveRecord
 {
     public $file;
+    public $anio;
     /**
      * @inheritdoc
      */
