@@ -54,7 +54,7 @@ AppAsset::register($this);
                         ['label' => 'Articulos', 'url' => ['/articulo'],],
                     ],
                 ];
-         $menuItems[] = '<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">PERFIL <b class="caret"></b></a>'
+                $menuItems[] = '<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">PERFIL <b class="caret"></b></a>'
                                .'<ul id="w4" class="dropdown-menu">'
                                 .'<li><a href="'.Yii::$app->homeUrl.'user/settings/account" tabindex="-1">Mi cuenta</a></li>'
                         .'<li>'

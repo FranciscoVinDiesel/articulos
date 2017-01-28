@@ -18,6 +18,7 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
+          'bedezign\yii2\audit\AuditTrailBehavior',
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
@@ -31,11 +32,17 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                     [
+                        'actions' => ['audit'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                 ],
+
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),

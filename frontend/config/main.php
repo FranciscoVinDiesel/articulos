@@ -66,8 +66,8 @@ return [
                 'basePath' => '@kvgrid/messages',
                 'forceTranslation' => true
          ],
-    ]
-],
+      ]
+    ],
 
 
 

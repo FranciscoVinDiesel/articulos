@@ -36,15 +36,18 @@ AppAsset::register($this);
 
 
             if (Yii::$app->user->isGuest) {
-                //$menuItems[] = ['label' => 'Login', 'url' => ['/user/login']];
+                $menuItems[] = ['label' => 'Login', 'url' => ['/user/login']];
+
+
             } else {
 
+                $menuItems[] = ['label' => 'AUDIT', 'url' => ['/audit']];
 
                 $menuItems[] = [
                     'label' => 'Administración',
                     'visible' => Yii::$app->user->identity->isAdmin || Yii::$app->user->can('admin'),
                     'items' => [
-                        ['label' => 'Usuarios', 'url' => ['/user/admin/index'],],
+                      //  ['label' => 'Usuarios', 'url' => ['/user/admin/index'],],
                     ],
                 ];
 
@@ -52,11 +55,11 @@ AppAsset::register($this);
                     'label' => 'Auditoría',
                     'visible' => Yii::$app->user->identity->isAdmin || Yii::$app->user->can('admin'),
                     'items' => [
-                        ['label' => 'Accesos', 'url' => ['/audit/entry'],],
+                        //['label' => 'Accesos', 'url' => ['/audit/entry'],],
 
-                        ['label' => 'Acciones', 'url' => ['/audit/trail'],],
+                        //['label' => 'Acciones', 'url' => ['/audit/trail'],],
 
-                        ['label' => 'Inicio de sesión', 'url' => ['/logs/index'],],
+                        //['label' => 'Inicio de sesión', 'url' => ['/logs/index'],],
 
                     ],
                 ];

@@ -102,15 +102,22 @@ class ArticuloController extends Controller
             /*Consigue la direccion del archivo*/
             $nombre_articulo = $model->nombre_articulo;
             $model->file = UploadedFile::getInstance($model, 'file');
-            
-            if(is_null($model->file)){
-              return $this->redirect(['view', 'id' => $model->id_articulo]);
 
-            }else{
+            if(!is_null($model->file)){
+
+
+
               $model->file->saveAs('upload/'.$nombre_articulo);
-
               $model->archivo = 'upload/'.$nombre_articulo;
               $model->save();
+
+              return $this->redirect(['view', 'id' => $model->id_articulo]);
+
+
+            }else{
+
+              $model->save();
+              return $this->redirect(['view', 'id' => $model->id_articulo]);
             }
 
 

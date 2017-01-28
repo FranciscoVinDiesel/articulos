@@ -14,12 +14,15 @@ return [
              ],
         ],
 
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-        ],
-        'gridview' =>  [
-        'class' => '\kartik\grid\Module'
-        ],    
+        //'authManager' => [
+        //    //'class' => 'yii\rbac\DbManager',
+        //    'class' => 'dektrium\rbac\components\DbManager',
+
+        //],
+        //'gridview' =>  [
+        //'class' => '\kartik\grid\Module'
+        //],
 
     ],
+
 ];

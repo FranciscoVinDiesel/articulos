@@ -16,6 +16,7 @@ use frontend\models\ContactForm;
 /**
  * Site controller
  */
+
 class SiteController extends Controller
 {
     /**
@@ -72,7 +73,25 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+      $model = new LoginForm();
+
+      if (!Yii::$app->user->isGuest) {
+              return $this->render('index', ['model' => $model]);
+      }
+
+
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->render('index', ['model' => $model]);
+        } else {
+            return $this->render('inicio', [
+                'model' => $model,
+            ]);
+        }
+
+
+
     }
     /**
      * Displays homepage.
@@ -82,6 +101,15 @@ class SiteController extends Controller
     public function actionReveal()
     {
         return $this->render('reveal');
+    }
+    /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionInicio()
+    {
+      return $this->render('inicio');
     }
     /**
      * Displays homepage.
@@ -119,7 +147,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        $this->layout = 'login';
+        //$this->layout = 'login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -128,7 +156,6 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
-
             return $this->render('login', [
                 'model' => $model,
             ]);

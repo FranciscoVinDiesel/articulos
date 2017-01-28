@@ -28,8 +28,8 @@ use Yii;
  */
 class Articulo extends \yii\db\ActiveRecord
 {
-    public $file;
-    public $anio;
+  public $file;
+  public $anio;
     /**
      * @inheritdoc
      */
@@ -47,9 +47,8 @@ class Articulo extends \yii\db\ActiveRecord
             [['Url', 'descripcion', 'archivo'], 'string'],
             [['puntaje_articulo'], 'number'],
             [['fecha_creacion', 'fehca_revision', 'fecha_publicacion'], 'safe'],
-            [['id_escuela', 'id_estados', 'archivo'], 'required'],
+            [['id_escuela', 'id_estados'], 'required'],
             [['id_escuela', 'id_estados'], 'integer'],
-            [['file'], 'file'],
             [['nombre_articulo'], 'string', 'max' => 200],
             [['ciudad'], 'string', 'max' => 80],
             [['id_escuela'], 'exist', 'skipOnError' => true, 'targetClass' => Escuelas::className(), 'targetAttribute' => ['id_escuela' => 'id_escuela']],
